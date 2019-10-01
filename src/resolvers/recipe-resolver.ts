@@ -36,7 +36,7 @@ export class RecipeResolver {
   ): Promise<Recipe> {
     const recipe = new RecipeModel({
       ...recipeInput,
-      author: user._id
+      author: user
     } as Recipe);
 
     return await recipe.save();
@@ -56,7 +56,7 @@ export class RecipeResolver {
     // set the new recipe rate
     const newRate: Rate = {
       value: rateInput.value,
-      user: user._id,
+      user: user,
       date: new Date()
     };
 

@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from "type-graphql";
-import { prop as Property, Ref } from "typegoose";
+import { prop as Property, Ref, Typegoose } from "typegoose";
 
 import { User } from "./user";
 

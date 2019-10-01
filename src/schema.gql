@@ -13,9 +13,7 @@ type Mutation {
   rate(rate: RateInput!): Recipe!
 }
 
-"""
-Mongo object id scalar type
-"""
+"""Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
