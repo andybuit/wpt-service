@@ -11,7 +11,8 @@ import { User } from "./entities/user";
 import { TypegooseMiddleware } from "./typegoose-middleware";
 import { ObjectId } from "mongodb";
 import { ObjectIdScalar } from "./object-id.scalar";
-import { scraping } from "./scraper";
+import { scraping } from "./scraping/scraper";
+import Scheduler from "./scraping/scheduler";
 
 export interface Context {
   user: User;
@@ -20,6 +21,7 @@ export interface Context {
 class App {
   private app: express.Application = express();
   private routePrv: Routes = new Routes();
+  private scheduler: Scheduler = new Scheduler();
   private mongoUrl: string =
     "mongodb+srv://suianbu:Bsa770111@cluster0-m5knr.mongodb.net/wtp?retryWrites=true&w=majority";
 
@@ -28,12 +30,17 @@ class App {
     this.config();
     this.routePrv.routes(this.app);
     this.mongoSetup();
-    scraping();
+    this.schedule();
   }
 
   private config(): void {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+  }
+
+  private schedule() {
+    this.scheduler.addJob({cron: "* * * * *", task: scraping});
+    this.scheduler.start();
   }
 
   private mongoSetup(): void {
