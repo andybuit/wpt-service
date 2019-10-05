@@ -13,6 +13,7 @@ import { ObjectId } from "mongodb";
 import { ObjectIdScalar } from "./object-id.scalar";
 import { scraping } from "./scraping/scraper";
 import Scheduler from "./scraping/scheduler";
+import { Container } from "typedi";
 
 export interface Context {
   user: User;
@@ -30,7 +31,7 @@ class App {
     this.config();
     this.routePrv.routes(this.app);
     this.mongoSetup();
-    this.schedule();
+    // this.schedule();
   }
 
   private config(): void {
@@ -63,7 +64,8 @@ class App {
       // use document converting middleware
       globalMiddlewares: [TypegooseMiddleware],
       // use ObjectId scalar mapping
-      scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }]
+      scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
+      container: Container
     });
 
     // create mocked context
