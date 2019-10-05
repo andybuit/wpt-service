@@ -39,7 +39,7 @@ class App {
   }
 
   private schedule() {
-    this.scheduler.addJob({cron: "* * * * *", task: scraping});
+    this.scheduler.addJob({cron: "*/30 * * * * *", task: scraping});
     this.scheduler.start();
   }
 
