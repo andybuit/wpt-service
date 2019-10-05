@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
-export class User extends Typegoose {
+export class Website extends Typegoose {
   @Field()
   readonly _id: ObjectId;
 
@@ -22,4 +22,4 @@ export class User extends Typegoose {
   @Property()
   emailVerified?: boolean;
 }
-export const UserModel = new User().getModelForClass(User);
+export const WebsiteModel = new Website().getModelForClass(Website);

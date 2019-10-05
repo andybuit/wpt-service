@@ -30,7 +30,7 @@ class App {
     this.config();
     this.routePrv.routes(this.app);
     this.mongoSetup();
-    this.schedule();
+    // this.schedule();
   }
 
   private config(): void {
@@ -39,7 +39,7 @@ class App {
   }
 
   private schedule() {
-    this.scheduler.addJob({cron: "* * * * *", task: scraping});
+    this.scheduler.addJob({ cron: "* * * * *", task: scraping });
     this.scheduler.start();
   }
 
