@@ -1,6 +1,7 @@
-import { prop as Property, Typegoose } from "typegoose";
+import { prop as Property, arrayProp as ArrayProperty,Typegoose } from "typegoose";
 import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
+import { Rule } from "./Rule";
 
 @ObjectType()
 export class Website extends Typegoose {
@@ -8,18 +9,12 @@ export class Website extends Typegoose {
   readonly _id: ObjectId;
 
   @Field()
-  @Property({ required: true })
-  email: string;
+  @Property({ required: true, unique: true })
+  url: string;
 
-  @Field({ nullable: true })
-  @Property()
-  nickname?: string;
+  @Field()
+  @ArrayProperty({items: Rule, default: []})
+  rules: Rule[];
 
-  @Property({ required: true })
-  password: string;
-
-  @Field({ nullable: true })
-  @Property()
-  emailVerified?: boolean;
 }
 export const WebsiteModel = new Website().getModelForClass(Website);
