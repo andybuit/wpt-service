@@ -1,7 +1,7 @@
 import { prop as Property, arrayProp as ArrayProperty,Typegoose } from "typegoose";
 import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
-import { Rule } from "./Rule";
+import { Rule } from "./rule";
 
 @ObjectType()
 export class Website extends Typegoose {
@@ -12,7 +12,7 @@ export class Website extends Typegoose {
   @Property({ required: true, unique: true })
   url: string;
 
-  @Field()
+  @Field(type => [Rule])
   @ArrayProperty({items: Rule, default: []})
   rules: Rule[];
 

@@ -16,12 +16,12 @@ export async function scraping() {
   await page.waitFor(2000);
   const html = await page.content();
 
-  fs.writeFile("c:\\temp\\web.html", html, function(err) {
-    if (err) {
-      return console.log(err);
-    }
-    console.log("The file was saved!");
-  });
+  // fs.writeFile("c:\\temp\\web.html", html, function(err) {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+  //   console.log("The file was saved!");
+  // });
   $(
     "div:nth-child(4)>div:nth-child(2)>div>div>div:nth-child(2)>div>span:nth-child(1)",
     html

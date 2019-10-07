@@ -1,6 +1,6 @@
-import { ObjectType, Field } from "type-graphql";
+import { ObjectType, Field, InputType } from "type-graphql";
 import { prop as Property, Ref } from "typegoose";
-import { ValueType } from "./enums/value-type";
+import { ValueType } from "../enums/value-type";
 
 @ObjectType()
 export class Rule {

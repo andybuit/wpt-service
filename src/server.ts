@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import App from "./app";
 import { registerEnumType } from "type-graphql";
-import { ValueType } from "./entities/enums/value-type"
+import { ValueType } from "./enums/value-type"
 
 registerEnumType(ValueType, {
   name: "ValueType", // this one is mandatory

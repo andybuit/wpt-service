@@ -3,51 +3,45 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-"""
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
-"""
-scalar DateTime
-
 type Mutation {
-  addRecipe(recipe: RecipeInput!): Recipe!
-  rate(rate: RateInput!): Recipe!
+  addWebSite(website: WebsiteInput!): Website!
 }
 
 """Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
-  recipe(recipeId: ObjectId!): Recipe
-  recipes: [Recipe!]!
+  website(id: String!): Website!
+  websites(skip: Int = 0, take: Int = 10): [Website!]!
 }
 
-type Rate {
-  value: Int!
-  date: DateTime!
-  user: User!
+type Rule {
+  name: String!
+  path: String!
+  valueType: ValueType!
 }
 
-input RateInput {
-  recipeId: ObjectId!
-  value: Int!
+input RuleInput {
+  name: String!
+  path: String!
+  valueType: ValueType!
 }
 
-type Recipe {
+"""Scraping Rule value types"""
+enum ValueType {
+  Price
+  Text
+  Url
+  Number
+}
+
+type Website {
   _id: ObjectId!
-  title: String!
-  description: String
-  ratings: [Rate!]!
-  author: User!
+  url: String!
+  rules: [Rule!]!
 }
 
-input RecipeInput {
-  title: String!
-  description: String
-}
-
-type User {
-  _id: ObjectId!
-  email: String!
-  nickname: String
-  emailVerified: Boolean
+input WebsiteInput {
+  url: String!
+  rules: [RuleInput!]!
 }

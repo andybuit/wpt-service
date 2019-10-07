@@ -5,8 +5,6 @@ import * as bodyParser from "body-parser";
 import { Routes } from "./routes/crmRoutes";
 import * as mongoose from "mongoose";
 import { buildSchema } from "type-graphql";
-import { RecipeResolver } from "./resolvers/recipe-resolver";
-import { RateResolver } from "./resolvers/rate-resolver";
 import { User } from "./entities/user";
 import { TypegooseMiddleware } from "./typegoose-middleware";
 import { ObjectId } from "mongodb";
@@ -14,6 +12,7 @@ import { ObjectIdScalar } from "./object-id.scalar";
 import { scraping } from "./scraping/scraper";
 import Scheduler from "./scraping/scheduler";
 import { Container } from "typedi";
+import { WebsiteeResolver } from "./resolvers/website.resolver";
 
 export interface Context {
   user: User;
@@ -40,7 +39,7 @@ class App {
   }
 
   private schedule() {
-    this.scheduler.addJob({cron: "*/30 * * * * *", task: scraping});
+    this.scheduler.addJob({cron: "*/10 * * * * *", task: scraping});
     this.scheduler.start();
   }
 
@@ -59,7 +58,7 @@ class App {
   private async apolloServerSetup() {
     // const { defaultUser } = await seedDatabase();
     const schema = await buildSchema({
-      resolvers: [RecipeResolver, RateResolver],
+      resolvers: [WebsiteeResolver],
       emitSchemaFile: path.resolve(__dirname, "schema.gql"),
       // use document converting middleware
       globalMiddlewares: [TypegooseMiddleware],
