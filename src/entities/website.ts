@@ -1,10 +1,10 @@
-import { prop as Property, arrayProp as ArrayProperty,Typegoose } from "typegoose";
+import { prop as Property, arrayProp as ArrayProperty, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
 import { Rule } from "./rule";
 
 @ObjectType()
-export class Website extends Typegoose {
+export class Website {
   @Field()
   readonly _id: ObjectId;
 
@@ -17,4 +17,4 @@ export class Website extends Typegoose {
   rules: Rule[];
 
 }
-export const WebsiteModel = new Website().getModelForClass(Website);
+export const WebsiteModel = getModelForClass(Website);

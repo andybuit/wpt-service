@@ -1,4 +1,4 @@
-import { prop as Property, Typegoose } from "typegoose";
+import { prop as Property, Typegoose, getModelForClass } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
 
@@ -22,4 +22,4 @@ export class User extends Typegoose {
   @Property()
   emailVerified?: boolean;
 }
-export const UserModel = new User().getModelForClass(User);
+export const UserModel = getModelForClass(User);

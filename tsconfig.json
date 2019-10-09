@@ -4,14 +4,17 @@
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "pretty": true,
         "sourceMap": true,
-        "target": "es2016",
+        "target": "es2017",
         "outDir": "./dist",
         "baseUrl": "./src",
         "lib": [
-            "es2016",
-            "esnext.asynciterable"
+            "es2017",
+            "esnext.asynciterable",
+            "dom"
         ]
     },
     "include": [

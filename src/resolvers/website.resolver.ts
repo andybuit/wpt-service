@@ -1,4 +1,4 @@
-import { Resolver, FieldResolver, Root, Mutation, Arg } from "type-graphql";
+import { Resolver, Mutation, Arg } from "type-graphql";
 
 import { ResourceResolver } from "./resource.resolver";
 import { Website, WebsiteModel } from "../entities/website";

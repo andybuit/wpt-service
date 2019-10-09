@@ -1,5 +1,5 @@
-import { ObjectType, Field, InputType } from "type-graphql";
-import { prop as Property, Ref } from "typegoose";
+import { ObjectType, Field } from "type-graphql";
+import { prop as Property, Ref } from "@typegoose/typegoose";
 import { ValueType } from "../enums/value-type";
 
 @ObjectType()

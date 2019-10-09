@@ -1,16 +1,15 @@
 import { Service } from "typedi";
-import { Model } from "mongoose";
-import { Typegoose, ModelType } from "typegoose";
+import { ModelType } from "@typegoose/typegoose/lib/types";
 
 // we need to use factory as we need separate instance of service for each generic
 @Service()
 export class ResourceServiceFactory {
-  create<T extends Typegoose>(RsourceModeCls: ModelType<T>) {
+  create<T>(RsourceModeCls: ModelType<T>) {
     return new ResourceService(RsourceModeCls);
   }
 }
 
-export class ResourceService<T extends Typegoose> {
+export class ResourceService<T> {
   constructor(protected RsourceModeCls: ModelType<T>) {}
 
   async getOne(id: string): Promise<T | undefined> {

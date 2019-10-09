@@ -1,9 +1,9 @@
 import {
   prop as Property,
   arrayProp as ArrayProperty,
-  Typegoose,
-  Ref
-} from "typegoose";
+  Ref,
+  getModelForClass
+} from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 import { Field, ObjectType } from "type-graphql";
 
@@ -11,7 +11,7 @@ import { Rate } from "./rate";
 import { User } from "./user";
 
 @ObjectType()
-export class Recipe extends Typegoose {
+export class Recipe {
   @Field()
   readonly _id: ObjectId;
 
@@ -32,4 +32,4 @@ export class Recipe extends Typegoose {
   author: Ref<User>;
 }
 
-export const RecipeModel = new Recipe().getModelForClass(Recipe);
+export const RecipeModel = getModelForClass(Recipe);

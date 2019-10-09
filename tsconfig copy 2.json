@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "lib": [
+        "dom",
+        "es2017",
+        "esnext.asynciterable"
+      ],
+      "baseUrl": "./src",
+      "outDir": "./dist",
+      "moduleResolution": "node",
+      "allowJs": true,
+      "noEmit": false,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "isolatedModules": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": ["**/*.ts"]
+  }
+  

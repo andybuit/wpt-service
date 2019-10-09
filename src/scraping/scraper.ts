@@ -1,8 +1,9 @@
-import * as puppeteer from "puppeteer-extra";
-import * as $ from "cheerio";
-import * as fs from "fs";
-import * as pluginStealth from "puppeteer-extra-plugin-stealth";
+import puppeteer from "puppeteer-extra";
+import  $ = require("cheerio");
+// import * as fs from "fs";
+import pluginStealth from "puppeteer-extra-plugin-stealth";
 
+// const $ = cheerio;
 const url =
   "https://www.costco.ca/LG-2-piece-Laundry-Suite-5.2-cu.ft-Front-Load-Washer-with-SmartThinQ%c2%ae-Technology-and-7.4-cu.ft-Dryer-with-Smart-Diagnosis%e2%84%a2.product.100427940.html";
 
@@ -25,8 +26,8 @@ export async function scraping() {
   $(
     "div:nth-child(4)>div:nth-child(2)>div>div>div:nth-child(2)>div>span:nth-child(1)",
     html
-  ).each(function() {
-    console.log($(this).text());
+  ).each(function(el) {
+    console.log($(el).text());
   });
 
   await browser.close();

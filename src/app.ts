@@ -1,9 +1,8 @@
-import * as express from "express";
+import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import * as path from "path";
-import * as bodyParser from "body-parser";
-import { Routes } from "./routes/crmRoutes";
-import * as mongoose from "mongoose";
+import path from "path";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
 import { buildSchema } from "type-graphql";
 import { User } from "./entities/user";
 import { TypegooseMiddleware } from "./typegoose-middleware";
@@ -19,8 +18,7 @@ export interface Context {
 }
 
 class App {
-  private app: express.Application = express();
-  private routePrv: Routes = new Routes();
+  private app = express();
   private scheduler: Scheduler = new Scheduler();
   private mongoUrl: string =
     "mongodb+srv://suianbu:Bsa770111@cluster0-m5knr.mongodb.net/wtp?retryWrites=true&w=majority";
@@ -28,7 +26,6 @@ class App {
   constructor() {
     this.apolloServerSetup();
     this.config();
-    this.routePrv.routes(this.app);
     this.mongoSetup();
     // this.schedule();
   }
@@ -68,15 +65,15 @@ class App {
     });
 
     // create mocked context
-    const context: Context = { user: null }; //{ user: defaultUser };
+    // const context: Context = { user: undefined }; //{ user: defaultUser };
 
     // Create GraphQL server
-    const server = new ApolloServer({ schema, context });
+    const server = new ApolloServer({ schema, /*context*/ });
 
     server.applyMiddleware({ app: this.app });
   }
 
-  public start(PORT) {
+  public start(PORT: number) {
     this.app.listen(PORT, () => {
       console.log("Express server listening on port " + PORT);
     });

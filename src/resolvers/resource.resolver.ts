@@ -1,22 +1,8 @@
+import { Arg, Args, ArgsType, ClassType, Field, Int, Query, Resolver } from "type-graphql";
 import { Service } from "typedi";
-import {
-  Query,
-  Arg,
-  Int,
-  Resolver,
-  ArgsType,
-  Field,
-  Args,
-  FieldResolver,
-  Root,
-  ClassType,
-  Mutation,
-  InputType,
-} from "type-graphql";
-
 import { ResourceService, ResourceServiceFactory } from "../services/resource.service";
-import { Model } from "mongoose";
-import { Typegoose, ModelType } from "typegoose";
+import { ModelType } from "@typegoose/typegoose/lib/types";
+
 
 @ArgsType()
 export class GetAllArgs {
@@ -27,15 +13,15 @@ export class GetAllArgs {
   take: number = 10;
 }
 
-export function ResourceResolver<T extends Typegoose, InputType>(
+export function ResourceResolver<T, InputType>(
   ResourceCls: ClassType,
   RsourceModeCls: ModelType<T>
 ) {
   const resourceName = ResourceCls.name.toLocaleLowerCase();
 
   // `isAbstract` decorator option is mandatory to prevent multiple registering in schema
-  @Resolver(of => ResourceCls, { isAbstract: true })
   @Service()
+  @Resolver(of => ResourceCls, { isAbstract: true })
   abstract class ResourceResolverClass {
     protected resourceService: ResourceService<T>;
 
